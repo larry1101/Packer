@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:layout_marginTop="12dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    app:cardBackgroundColor="@color/colorMainActivityCardBackground"
+    app:contentPadding="8dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="8dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/item_title_tv"
+            android:layout_width="match_parent"
+            android:textColor="#383838"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:padding="@dimen/card_item_padding_default" />
+
+        <TextView
+            android:id="@+id/item_content_tv"
+            android:textColor="#545454"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="content......"
+            android:layout_marginLeft="@dimen/card_item_margin_content"
+            android:padding="@dimen/card_item_padding_default" />
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+

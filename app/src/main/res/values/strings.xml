@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Packer</string>
+    <string name="app_about">Do not forget things</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="packing_title_editor_hint">Packing title</string>
+    <string name="packing_title_editor_button">OK</string>
+    
+    <string-array name="packing_items_demo">
+        <item>身份证</item>
+        <item>学生证</item>
+        <item>驾照</item>
+        <item>银行卡</item>
+
+        <item>火车票</item>
+
+        <item>电脑</item>
+        <item>手机</item>
+        <item>苏菲</item>
+        <item>开发机</item>
+        <item>相机</item>
+        <item>电源</item>
+        <item>数据线</item>
+        <item>剃须刀</item>
+        <item>移动硬盘</item>
+        <item>充电器</item>
+        <item>耳机</item>
+        <item>kindle</item>
+        <item>TI</item>
+        <item>充电器</item>
+        <item>U盘</item>
+
+        <item>药</item>
+    </string-array>
+</resources>

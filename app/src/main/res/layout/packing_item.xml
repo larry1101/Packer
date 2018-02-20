@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:text="CheckBox"
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox_packing_item"
+        android:textSize="20sp"
+        android:textColor="@color/colorUnpackItem"
+        android:paddingStart="@dimen/packing_item_padding_default"
+        android:paddingEnd="@dimen/packing_item_padding_default"
+        android:layout_marginStart="@dimen/packing_item_margin_default"
+        android:layout_marginTop="@dimen/packing_item_margin_less" />
+</LinearLayout>
