@@ -20,15 +20,56 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/item_title_tv"
-            android:layout_width="match_parent"
-            android:textColor="#383838"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:padding="@dimen/card_item_padding_default" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/textView_all"
+                android:text="all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:padding="@dimen/card_item_padding_small"
+
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:text="/"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_splash"
+                android:padding="@dimen/card_item_padding_small"
+
+                android:layout_toStartOf="@id/textView_all"/>
+
+            <TextView
+                android:text="unpack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_unpack"
+                android:padding="@dimen/card_item_padding_small"
+                android:textColor="@color/colorMainCardUnpackedCount"
+
+                android:layout_alignParentTop="true"
+                android:layout_toStartOf="@+id/textView_splash" />
+
+            <TextView
+                android:id="@+id/item_title_tv"
+                android:text="Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorMainCardTitle"
+                android:textSize="20sp"
+                android:textStyle="bold"
+
+                android:padding="@dimen/card_item_padding_default"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/textView_unpack" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/item_content_tv"
@@ -38,9 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="content......"
-            android:layout_marginLeft="@dimen/card_item_margin_content"
             android:padding="@dimen/card_item_padding_default" />
-
 
     </LinearLayout>
 

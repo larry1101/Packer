@@ -8,6 +8,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <dimen name="card_item_padding_small">2dp</dimen>
     <dimen name="card_item_padding_default">6dp</dimen>
     <dimen name="card_item_padding_large">8dp</dimen>
     <dimen name="card_item_padding_content">15dp</dimen>

@@ -56,6 +56,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         viewHolder.textViewTitle.setText(datas.get(position).getTitle());
         viewHolder.textViewContent.setText(datas.get(position).getContent());
+        viewHolder.textViewCntUnpack.setText(""+datas.get(position).getUnpackedCount());
+        viewHolder.textViewCntAll.setText(""+datas.get(position).getItemCount());
     }
 
     //获取数据的数量
@@ -90,12 +92,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewTitle, textViewContent;
+        public TextView textViewTitle, textViewContent, textViewCntAll, textViewCntUnpack;
 
         public ViewHolder(View view) {
             super(view);
             textViewTitle = (TextView) view.findViewById(R.id.item_title_tv);
             textViewContent= (TextView) view.findViewById(R.id.item_content_tv);
+            textViewCntAll = (TextView) view.findViewById(R.id.textView_all);
+            textViewCntUnpack= (TextView) view.findViewById(R.id.textView_unpack);
         }
     }
 

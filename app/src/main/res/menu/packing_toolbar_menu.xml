@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Help"
+    <item android:title="@string/nav_action_help"
         android:id="@+id/packing_action_help"
         android:icon="@android:drawable/ic_menu_help"
         app:showAsAction="ifRoom" />
-    <item android:title="Delete"
+    <item android:title="@string/packing_action_del"
         android:id="@+id/packing_action_delete"
         android:icon="@android:drawable/ic_menu_delete"
         app:showAsAction="ifRoom" />
     <item
-        android:title="Add"
+        android:title="@string/packing_action_add"
         app:showAsAction="always"
         android:id="@+id/packing_action_add_demo"
         android:icon="@android:drawable/ic_menu_add"/>

@@ -1,10 +1,10 @@
 package com.dou.packer.DataManager;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.dou.packer.DataManager.items.PackingItem;
+import com.dou.packer.utils.GlobalKeys;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by Administrator on 2018-2-19.
@@ -27,6 +28,8 @@ public class SinglePackingManager extends PackerStorageManager {
     private boolean FILE_EXIST;
     private boolean NEW_PACKING;
 
+    private int cnt_packed=0, cnt_unpack=0;
+
     public SinglePackingManager(Context context, String packingName, boolean newPacking) {
         super(context);
         this.PACKING_NAME = packingName;
@@ -36,7 +39,9 @@ public class SinglePackingManager extends PackerStorageManager {
     }
 
     @Override
-    public ArrayList<PackingItem> getData() {
+    public ArrayList<PackingItem> getData(int showingPackingsItemsUpperLimit) {
+
+        // TODO: 2018-3-4 param int
         ArrayList<PackingItem> data = new ArrayList<>();
 
         if (!NEW_PACKING && FILE_EXIST){
@@ -59,6 +64,16 @@ public class SinglePackingManager extends PackerStorageManager {
             } catch (IOException e) {
                 e.printStackTrace();
                 Toast.makeText(context, "IOException occurs while reading data", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        for (PackingItem item :
+                data) {
+//            item.isPacked() ? cnt_packed++ : cnt_unpack++ ;
+            if (item.isPacked()){
+                cnt_packed++;
+            }else {
+                cnt_unpack++;
             }
         }
 
@@ -108,7 +123,7 @@ public class SinglePackingManager extends PackerStorageManager {
     }
 
     public String getUnpackItemString(){
-        return getUnpackItemString(5);
+        return getUnpackItemString(GlobalKeys.showingPackingsItemsUpperLimitDefault);
     }
 
     @Override
@@ -163,5 +178,17 @@ public class SinglePackingManager extends PackerStorageManager {
             Toast.makeText(context, "Error.........", Toast.LENGTH_SHORT).show();
         }
         return true;
+    }
+
+    public int getCntPacked() {
+        return cnt_packed;
+    }
+
+    public int getCntUnpack() {
+        return cnt_unpack;
+    }
+
+    public int getItemCount() {
+        return cnt_unpack+cnt_packed;
     }
 }

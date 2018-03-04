@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="Help"
+    <item android:title="@string/nav_action_help"
         app:showAsAction="ifRoom"
         android:id="@+id/title_bar_help"
         android:icon="@android:drawable/ic_menu_help"/>
 
-    <item android:title="New"
+    <item android:title="@string/nav_action_new"
         app:showAsAction="always"
         android:id="@+id/title_bar_new"
         android:icon="@android:drawable/ic_menu_add" />

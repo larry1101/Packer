@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.dou.packer.DataManager.SinglePackingManager;
 import com.dou.packer.DataManager.items.PackingItem;
+import com.dou.packer.utils.GlobalKeys;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ import static com.dou.packer.utils.IntentKeys.PACKING_NAME;
 
 public class Packing extends AppCompatActivity {
 
-    private TextView packingTitle;
+//    private TextView packingTitle;
 
 //    List<PackingItem> data = new ArrayList<>();
 
@@ -61,44 +62,44 @@ public class Packing extends AppCompatActivity {
 
         isPackingNew = getIntent().getBooleanExtra(NEW_PACKING_FLAG,false);
 
-        packingTitle = (TextView) findViewById(R.id.textViewPackingTitle);
-        packingTitle.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                View packingTitleEditorLayout = LayoutInflater.from(context).inflate(R.layout.packing_title_editor,null);
-
-                final EditText packingTitleEditor = (EditText)packingTitleEditorLayout.findViewById(R.id.editText_packing_editor);
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-                builder.setView(packingTitleEditorLayout);
-
-                builder.setCancelable(true)
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
-                            }
-                        })
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                String packingTitleString = packingTitleEditor.getText().toString();
-                                if (packingTitleString.equals("")){
-                                    dialogInterface.cancel();
-                                    return;
-                                }
-                                packingTitle.setText(packingTitleString);
-                                // TODO: 2018-2-20 rename at storage
-                            }
-                        });
-
-                builder.show();
-
-                return true;
-            }
-        });
+//        packingTitle = (TextView) findViewById(R.id.textViewPackingTitle);
+//        packingTitle.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//
+//                View packingTitleEditorLayout = LayoutInflater.from(context).inflate(R.layout.packing_title_editor,null);
+//
+//                final EditText packingTitleEditor = (EditText)packingTitleEditorLayout.findViewById(R.id.editText_packing_editor);
+//
+//                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//
+//                builder.setView(packingTitleEditorLayout);
+//
+//                builder.setCancelable(true)
+//                        .setNegativeButton(getText(R.string.btn_cancel), new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                dialogInterface.cancel();
+//                            }
+//                        })
+//                        .setPositiveButton(getText(R.string.btn_ok), new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                String packingTitleString = packingTitleEditor.getText().toString();
+//                                if (packingTitleString.equals("")){
+//                                    dialogInterface.cancel();
+//                                    return;
+//                                }
+//                                packingTitle.setText(packingTitleString);
+//                                // TODO: 2018-2-20 rename at storage
+//                            }
+//                        });
+//
+//                builder.show();
+//
+//                return true;
+//            }
+//        });
 
         recyclerViewPackingItems = (RecyclerView)findViewById(R.id.recyclerViewPacking);
 
@@ -136,9 +137,12 @@ public class Packing extends AppCompatActivity {
         adapter.setOnItemLongClickListener(new PackingRecyclerViewAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(View itemView, int pos) {
-                Toast.makeText(context, ""+adapter.getItem(pos), Toast.LENGTH_SHORT).show();
-                adapter.deleteItem(pos);
-                return true;
+                if (itemView instanceof CheckBox) {
+                    Toast.makeText(context, ""+adapter.getItem(pos), Toast.LENGTH_SHORT).show();
+                    adapter.deleteItem(pos);
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -181,10 +185,12 @@ public class Packing extends AppCompatActivity {
         // TODO: 2018-2-20 在UI线程IO？
         manager = new SinglePackingManager(this,getIntent().getStringExtra(PACKING_NAME),isPackingNew);
         if (isPackingNew){
-            packingTitle.setText(getIntent().getStringExtra(PACKING_NAME));
+            setTitle(getIntent().getStringExtra(PACKING_NAME)+" (新*)");
+//            packingTitle.setText(getIntent().getStringExtra(PACKING_NAME));
         }else {
-            packingTitle.setText(getIntent().getStringExtra(PACKING_NAME));
-            adapter.addData(manager.getData());
+            setTitle(getIntent().getStringExtra(PACKING_NAME));
+//            packingTitle.setText(getIntent().getStringExtra(PACKING_NAME));
+            adapter.addData(manager.getData(-1));
             recyclerViewPackingItems.scrollToPosition(adapter.getItemCount()-1);
         }
 
@@ -267,13 +273,13 @@ public class Packing extends AppCompatActivity {
 
         builder.setView(layoutAddItem)
                 .setCancelable(true)
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getText(R.string.btn_cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
                     }
                 })
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getText(R.string.btn_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 //                        Toast.makeText(context, "xixixi", Toast.LENGTH_SHORT).show();
@@ -286,7 +292,7 @@ public class Packing extends AppCompatActivity {
                         }
                     }
                 })
-                .setNeutralButton("ALL", new DialogInterface.OnClickListener() {
+                .setNeutralButton(getText(R.string.btn_add_all), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         for (PackingItem item:
@@ -434,7 +440,7 @@ public class Packing extends AppCompatActivity {
         }
 
         boolean deleteItem(int pos) {
-            if (pos>0 && pos<getItemCount()){
+            if (pos>=0 && pos<getItemCount()){
                 data.remove(pos);
                 notifyDataSetChanged();
                 return true;

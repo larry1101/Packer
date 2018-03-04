@@ -7,9 +7,36 @@
 
     <string name="action_settings">Settings</string>
 
-    <string name="packing_title_editor_hint">Packing title</string>
-    <string name="packing_title_editor_button">OK</string>
-    
+    <string name="nav_title">Packer</string>
+    <string name="nav_content">备忘录</string>
+    <string name="packing_title_editor_hint">请输入标题</string>
+    <string name="item_hint">请输入item</string>
+    <string name="save">保存</string>
+    <string name="redundant">重复了，不会新建</string>
+
+    <string name="nav_action_new">新建</string>
+    <string name="nav_action_sort">排序</string>
+    <string name="nav_action_settings">设置</string>
+    <string name="nav_action_help">帮助</string>
+
+    <string name="activity_title_settings">设置</string>
+    <string name="activity_title_sort">排序</string>
+    <string name="activity_title_new_packing">新建Packing</string>
+
+    <string name="packing_action_add">添加item</string>
+    <string name="packing_action_del">删除本Packing</string>
+
+    <string name="btn_ok">确定</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_add_all">添加所有</string>
+
+    <string name="alert_del_packing">确认删除Packing?</string>
+
+    <string name="settings_item_count">数量</string>
+    <string name="settings_item_count_about">设置首页每个Packing示的unpack item的数量</string>
+    <string name="settings_orientation">水平卡片</string>
+    <string name="settings_orientation_about">设置首页水平滑动或垂直滑动，下次启动时生效</string>
+
     <string-array name="packing_items_demo">
         <item>身份证</item>
         <item>学生证</item>

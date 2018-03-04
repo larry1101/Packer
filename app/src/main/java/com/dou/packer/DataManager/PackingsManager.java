@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.dou.packer.DataManager.items.CardInfo;
 import com.dou.packer.MainActivity;
+import com.dou.packer.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,10 +19,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.R.attr.data;
-
 /**
- * Created by Administrator on 2018-2-19.
+ * Packing管理者
+ * Created by ladoudou on 2018-2-19.
  */
 
 public class PackingsManager extends PackerStorageManager {
@@ -44,7 +44,7 @@ public class PackingsManager extends PackerStorageManager {
 //    }
 
     @Override
-    public ArrayList<CardInfo> getData() {
+    public ArrayList<CardInfo> getData(int showingPackingsItemsUpperLimit) {
 
         ArrayList<CardInfo> data = new ArrayList<>();
         try {
@@ -53,12 +53,19 @@ public class PackingsManager extends PackerStorageManager {
                 String line = reader.readLine();
                 if (line == null) break;
 
-                SinglePackingManager singlePacking = new SinglePackingManager(context,line,false);
-                data.add(
-                        new CardInfo(line,
-                        singlePacking.getUnpackItemString()
-                        )
-                );
+                if (showingPackingsItemsUpperLimit>0){
+                    SinglePackingManager singlePacking = new SinglePackingManager(context,line,false);
+                    singlePacking.getData(-1);
+                    data.add(
+                            new CardInfo(line,
+                                    singlePacking.getUnpackItemString(showingPackingsItemsUpperLimit),
+                                    singlePacking.getCntUnpack(),
+                                    singlePacking.getItemCount()
+                            )
+                    );
+                }else {
+                    data.add(new CardInfo(line));
+                }
             }
             reader.close();
         } catch (FileNotFoundException e) {
@@ -69,6 +76,7 @@ public class PackingsManager extends PackerStorageManager {
             Toast.makeText(context, "IOException occurs while reading data", Toast.LENGTH_SHORT).show();
         }
         return data;
+        // TODO: 2018-3-4 close reader?
     }
 
     @Deprecated
@@ -132,15 +140,15 @@ public class PackingsManager extends PackerStorageManager {
 
     public void attemptToDeleteItem(final String itemTitle) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Delete Packing?")
+        builder.setTitle(context.getText(R.string.alert_del_packing))
                 .setCancelable(true)
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(context.getText(R.string.btn_cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
                     }
                 })
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(context.getText(R.string.btn_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         deleteItem(itemTitle);

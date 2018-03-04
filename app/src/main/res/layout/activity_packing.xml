@@ -11,22 +11,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.dou.packer.Packing">
 
-    <TextView
-        android:text="Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewPackingTitle"
-        android:padding="8dp"
-        android:textSize="24sp"
-        android:textColor="#0e0f10"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:layout_below="@id/textViewPackingTitle"
         android:layout_centerHorizontal="true"
         android:id="@+id/recyclerViewPacking"
         android:layout_marginTop="8dp"
@@ -42,10 +30,10 @@
         android:gravity="center_vertical">
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="item"
+            android:hint="@string/item_hint"
             android:ems="10"
             android:id="@+id/edit_text_packing_add_item"
             android:imeOptions="actionDone"
@@ -55,7 +43,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/image_button_packing_add_item"
-            android:background="@android:drawable/ic_menu_send" />
+            android:background="@android:drawable/ic_menu_send"
+            android:contentDescription="@string/app_about" />
     </LinearLayout>
+
+    <!--<TextView-->
+        <!--android:text="Title"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/textViewPackingTitle"-->
+        <!--android:padding="8dp"-->
+        <!--android:textSize="24sp"-->
+        <!--android:textColor="#0e0f10"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true" />-->
 
 </RelativeLayout>

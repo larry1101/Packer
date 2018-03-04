@@ -25,7 +25,7 @@ public abstract class PackerStorageManager {
         return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
     }
 
-    public abstract List<?> getData();
+    public abstract List<?> getData(int showingPackingsItemsUpperLimit);
 
     public abstract boolean saveData(List<?> data);
 
